@@ -3,8 +3,10 @@
 
 ##Changes
 
-*Created functions to generate random values within an array
+*Cleaned up code a bit
 
-*Put together function to generate alert on 'click'
+*Established questions and variables for pop-ups on button "click"
+
+*Attempting to change input for "length" question from a String to an integer. Getting back "number" for "type of" under "length," but then when attempting to console log number, getting "NaN" as a result
 
 
