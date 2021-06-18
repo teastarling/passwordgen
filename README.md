@@ -3,10 +3,8 @@
 
 ##Changes
 
-*Cleaned up code a bit
+*Creating the same functions for each value due to be randomized and trying to set-up how to run them repeatedly ended up being more complicated than necessary. Removed these functions and changed to cancat in order to combine strings and then run the randomizing function a single time over the final string.
 
-*Established questions and variables for pop-ups on button "click"
-
-*Attempting to change input for "length" question from a String to an integer. Getting back "number" for "type of" under "length," but then when attempting to console log number, getting "NaN" as a result
+*Having an issue where each new password generated is added to the tail of the previous. Still working on solution.
 
 

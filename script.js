@@ -1,63 +1,77 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+var upperList = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var lowerList = 'abcdefghijklmnopqrstuvwxyz';
+var numberList = '0123456789';
+var symbolList = '!#$%&()*+,-./:;<=>?@[]^{|}~';
 
-var randomFunc = {
-  upper: randomUpper,
-  lower: randomLower,
-  number: randomNumber,
-  symbol: randomSymbol
-};
+var passAmalg = '';
+var passRandom = '';
 
-
-generateBtn.addEventListener("click", writePassword)
-
-// // Write password to the #password input
+// Write password to the #password input
 function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+}
+
+function generatePassword() {
+  console.log("popups first")
   var upperCaseSel = confirm("Include uppercase letters?");
   var lowerCaseSel = confirm("Include lowercase letters?");
   var numberSel = confirm("Include numbers?");
   var symbolSel = confirm("Include symbols?");
   var lengthSel = prompt("Please state desired password length.", "8-128");
-  var length = +lengthSel.value;
+  
+  
+  lengthSel = parseInt(lengthSel)
 
-    console.log(length);
+  if (isNaN(lengthSel)) {
+    console.log("length not number");
+    alert("Length is not a number! Please enter a number between 8-128.");
+    generatePassword();
+  } else if (lengthSel < 8 || lengthSel > 128) {
+    console.log("length within bounds")
+    alert("Length must be between 8-128!");
+    generatePassword();
+  }
+  
+  
+  if (upperCaseSel) {
+    passAmalg = passAmalg.concat(upperList);
+    console.log(passAmalg, "checking upper");
+    console.log("upper added to passAmalg");
+  }
 
-  // var password = generatePassword();
-  // var passwordText = document.querySelector("#password");
+  if (lowerCaseSel) {
+    passAmalg = passAmalg.concat(lowerList);
+    console.log(passAmalg, "checking lower");
+    console.log("lower added to passAmalg");
+  }
 
-  // passwordText.value = password;
+  if (numberSel) {
+    passAmalg = passAmalg.concat(numberList);
+    console.log(passAmalg, "checking numb");
+    console.log("number added to passAmalg");
+  }
 
+  if (symbolSel) {
+    passAmalg = passAmalg.concat(symbolList);
+    console.log(passAmalg, "checking symb");
+    console.log("symbol added to passAmalg");
+  }
+
+  for (i=0; i < lengthSel; i++) {
+    passRandom += passAmalg[Math.floor(Math.random() * passAmalg.length)];
+    console.log("randomize new amalg array");
+  }
+
+  return passRandom;
 }
 
-// function to generate a random upper-case letter
-function randomUpper() {
-  var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  return upperCase[Math.floor(Math.random() * upperCase.length)];
-}
 
-// function to generate a random lower-case letter
-function randomLower() {
-  var lowerCase = 'abcdefghijklmnopqrstuvwxyz'
-  return lowerCase[Math.floor(Math.random() * lowerCase.length)];
-}
-
-// function to generate a random number
-function randomNumber() {
-  var numbers = '0123456789'
-  return numbers[Math.floor(Math.random() * numbers.length)];
-}
-
-// function to generate a random symbol
-function randomSymbol() {
-  var symbols = '!#$%&()*+,-./:;<=>?@[]^{|}~';
-  return symbols[Math.floor(Math.random() * symbols.length)];
-}
-
-
-
-// function question() {
-//   confirm("yes or no");
-//   confirm("happy?"); }
-
-
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
